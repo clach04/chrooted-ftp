@@ -33,9 +33,10 @@ create_user() {
       echo -e "${password}\n${password}" | passwd "$username" &> /dev/null
 
       log "SFTP" "Prepare file structure for ${username}"
-      chown root:root "${DATA_FOLDER}/$username"
-      mkdir -p "${DATA_FOLDER}/$username/data"
-      chown $username "${DATA_FOLDER}/$username/data"
+      #chown root:root "${DATA_FOLDER}/$username"
+      #mkdir -p "${DATA_FOLDER}/$username/data"
+      #chown $username "${DATA_FOLDER}/$username/data"
+      chown $username "${DATA_FOLDER}/$username"
     fi
 }
 
@@ -70,7 +71,8 @@ chroot_local_user=YES
 ftpd_banner=${BANNER}
 listen_ipv6=NO
 local_enable=YES
-local_root=${DATA_FOLDER}/\$USER/data
+#local_root=${DATA_FOLDER}/\$USER/data
+local_root=${DATA_FOLDER}/\$USER
 local_umask=${UMASK}
 passwd_chroot_enable=YES
 pasv_enable=YES
